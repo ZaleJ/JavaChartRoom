@@ -30,7 +30,7 @@ public class Client{
 				String msg2; 
 				while (true) {
 					msg2 = re.readLine(); 
-					pw.println(msg2); 
+					pw.println	(msg2);
 				} 
 			}catch (Exception e) {
 				e.printStackTrace(); 
