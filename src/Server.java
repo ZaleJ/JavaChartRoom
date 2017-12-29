@@ -17,7 +17,7 @@ public class Server{
 	public Server(){
 		try{
 			port=6666;      //定义具体端口号端口
-			clients = new ArrayList<Socket>();//
+			clients = new ArrayList<Socket>();
 			server = new ServerSocket(port);
 			while(true){
 				Socket socket=server.accept();
