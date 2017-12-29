@@ -8,7 +8,6 @@ public class Server{
 	List<Socket> clients;	//客户端列表，包含所有连接到该客户端的信息
 	ServerSocket server;	//服务器
 
-
 	public static void main(String[] args){
 		new Server();
 	}	//main函数，创建服务器
@@ -23,6 +22,7 @@ public class Server{
 			//死循环检测有无新客户端连接
 			while(true){
 				Socket socket=server.accept();
+				//当检测到有客户端加入时候，将客户端信息加入列表，并创建一个新的关于刚进入的客户端的MyThread线程
 				clients.add(socket);
 				Mythread mythread=new Mythread(socket);
 				mythread.start();
@@ -30,7 +30,7 @@ public class Server{
 		}catch(Exception ex){}
 	}
 
-	//每次检测到有客户端加入，就创建一个MyThread线程对
+	//每次检测到有客户端加入，就创建一个MyThread线程在服务器端显示所有客户端的聊天内容
 	class Mythread extends Thread{
 		Socket ssocket;
 		private BufferedReader br; 
@@ -54,9 +54,14 @@ public class Server{
 			catch(Exception ex){
 			}    
 		}
+
+		//对自己和所有客户端发送一条消息
 		public void sendMsg(){
 			try{
+                //对自己发送一条消息
 				System.out.println(msg);
+
+                //对所有客户端发送一条消息
 				for(int i = clients.size() - 1; i >= 0; i--){
 					pw=new PrintWriter(clients.get(i).getOutputStream(),true);
 					pw.println(msg);

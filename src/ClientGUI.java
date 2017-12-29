@@ -11,18 +11,17 @@ public class ClientGUI implements ActionListener{
     JTextArea ChartHistory;
 
     JLabel lblInput;
-    public static void main(String[] args){
-        JFrame f = new JFrame("JAVA¡ƒÃÏ “");
-        Container contentPane = f.getContentPane();
-        ClientGUI gui = new ClientGUI();
-        JPanel pane = gui.init();
-        f.getContentPane().add(pane);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(600,500);
-        f.setVisible(true);
-        new Client();
-
-    }
+//    public static void main(String[] args){
+//        JFrame f = new JFrame("JAVA¡ƒÃÏ “");
+//        Container contentPane = f.getContentPane();
+//        ClientGUI gui = new ClientGUI();
+//        JPanel pane = gui.init();
+//        f.getContentPane().add(pane);
+//        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        f.setSize(600,500);
+//        f.setVisible(true);
+//        Client c = new Client();
+//    }
 
 
 
@@ -47,9 +46,10 @@ public class ClientGUI implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if (e.getSource()==Send){
             //ta.append(ID.getText()+"\n");
-
             JOptionPane.showMessageDialog(null,"hello");
             ChartHistory.append("+1");
         }
     }
+
+
 }
