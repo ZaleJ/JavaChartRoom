@@ -13,12 +13,14 @@ public class Server{
 		new Server();
 	}	//main函数，创建服务器
 
-    //服务器实现源码
+    //服务器实现
 	public Server(){
 		try{
 			port=6666;      //定义具体端口号端口
-			clients = new ArrayList<Socket>();
-			server = new ServerSocket(port);
+			clients = new ArrayList<Socket>();	//定义客户端列表，包含客户所有信息
+			server = new ServerSocket(port);	//定义服务器对象
+
+			//死循环检测有无新客户端连接
 			while(true){
 				Socket socket=server.accept();
 				clients.add(socket);
@@ -28,6 +30,7 @@ public class Server{
 		}catch(Exception ex){}
 	}
 
+	//每次检测到有客户端加入，就创建一个MyThread线程对
 	class Mythread extends Thread{
 		Socket ssocket;
 		private BufferedReader br; 
@@ -43,8 +46,7 @@ public class Server{
 	
 				sendMsg();
 	
-				while ((msg = br.readLine()) != null) { 
-	
+				while ((msg = br.readLine()) != null) {
 					msg = "【" + ssocket.getInetAddress() + "】说：" + msg; 
 					sendMsg(); 
 				} 
@@ -62,6 +64,6 @@ public class Server{
 				}
 			}
 			catch(Exception ex){}
-		}    
+		}
 	}
 }

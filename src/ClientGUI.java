@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI implements ActionListener{
+public class ClientGUI implements ActionListener{
 
     JTextField Input;
     JButton Send;
@@ -14,7 +14,7 @@ public class GUI implements ActionListener{
     public static void main(String[] args){
         JFrame f = new JFrame("JAVA¡ƒÃÏ “");
         Container contentPane = f.getContentPane();
-        GUI gui = new GUI();
+        ClientGUI gui = new ClientGUI();
         JPanel pane = gui.init();
         f.getContentPane().add(pane);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
