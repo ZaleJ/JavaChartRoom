@@ -11,7 +11,7 @@ public class ClientGUI{
 
     JTextField Input, Port, IP, Name;
     JButton Send, Conn, Dcon;
-    JTextArea ChartHistory;
+    JTextArea ChartHistory = new JTextArea(480, 280);
 
     JLabel lblInput, lblPort, lblIP, lblName;
 //    public static void main(String[] args){
@@ -77,7 +77,8 @@ public class ClientGUI{
         jp.add(lblInput);jp.add(Input);
         jp.add(Send);
         //jp.add(ChartHistory);
-
+        Port.setText("6666");
+        IP.setText("127.0.0.1");
         return jp;
     }
 
@@ -97,6 +98,13 @@ public class ClientGUI{
         return Input.getText();
     }
 
+    public String getPort(){
+        return Port.getText();
+    }
+
+    public String getIP(){
+        return IP.getText();
+    }
 
 
 

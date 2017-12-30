@@ -38,7 +38,8 @@ public class Server{
 				clients.add(socket);
 				gui.OnlineNum++;
 				gui.lblOnlineNum.setText("当前在线人数："+gui.OnlineNum);
-				Mythread mythread=new Mythread(socket);
+				String clientName = "client"+gui.OnlineNum;
+				Mythread mythread=new Mythread(socket, clientName);
 				mythread.start();
 			}
 		}catch(Exception ex){}
@@ -49,19 +50,22 @@ public class Server{
 		Socket ssocket;
 		private BufferedReader br; 
 		private PrintWriter pw; 
-		public String msg; 
-		public Mythread(Socket s){
+		public String msg;
+		String Name;
+		public Mythread(Socket s, String n){
 			ssocket=s;
+			Name=n;
 		}
 		public void run(){
 			try{
 				br = new BufferedReader(new InputStreamReader(ssocket.getInputStream())); 
-				msg = "欢迎【" + ssocket.getInetAddress() + "】进入聊天室！当前聊天室有【" + clients.size() + "】人"; 
-	
+				//msg = "欢迎【" + ssocket.getInetAddress() + "】进入聊天室！当前聊天室有【" + clients.size() + "】人";
+
+
+                msg = "欢迎【" + Name + "】进入聊天室！当前聊天室有【" + clients.size() + "】人";
 				sendMsg();
-	
 				while ((msg = br.readLine()) != null) {
-					msg = "【" + ssocket.getInetAddress() + "】说：" + msg; 
+					msg = "【" + Name + "】说sasasa：" + msg;
 					sendMsg(); 
 				}
 			}

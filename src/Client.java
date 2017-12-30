@@ -8,8 +8,10 @@ import java.util.*;
 
 public class Client implements ActionListener {
 	public int port=6666;
+	public String ip="127.0.0.1";
 	Socket socket=null;
     String LineContext;
+    public String name = "client";
 
     static ClientGUI gui = new ClientGUI();
 
@@ -32,7 +34,7 @@ public class Client implements ActionListener {
             gui.Send.addActionListener(this);
             gui.Conn.addActionListener(this);
             gui.Dcon.addActionListener(this);
-			socket=new Socket("127.0.0.1",port);
+			socket=new Socket(ip,port);
 			new Cthread().start();
 			BufferedReader br = new BufferedReader(new InputStreamReader(socket .getInputStream()));
 			String msg1;
@@ -47,8 +49,6 @@ public class Client implements ActionListener {
 	}
 	class Cthread extends Thread{
 		public void run() {
-		    //尝试将命令行输入改为文本框文本输入
-            //这个输入输出流真的是坑爹。。这特么要怎么改？
 			try {
 				BufferedReader re = new BufferedReader(new InputStreamReader(getInputStreamFromString(gui.getInput())));
 				PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
@@ -59,8 +59,8 @@ public class Client implements ActionListener {
 //					pw.println	(LineContext);
 //					gui.addChartContent(LineContext);
 //				}
-                if (new String(gui.Input.getText()).length()!=0){
-                    LineContext=gui.Input.getText();
+                if (new String(gui.getInput()).length()!=0){
+                    LineContext=gui.getInput();
                     pw.println(LineContext);
                     gui.addChartContent(LineContext);
                 }
@@ -69,10 +69,6 @@ public class Client implements ActionListener {
 				e.printStackTrace();
 			}
 		}
-
-
-
-
     }
 
     //将stirng转换为inputstream
@@ -84,7 +80,7 @@ public class Client implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if (e.getSource()==gui.Send){
             //ta.append(ID.getText()+"\n");
-            JOptionPane.showMessageDialog(null,"hello");
+            //JOptionPane.showMessageDialog(null,"hello");
             try {
                 BufferedReader re = new BufferedReader(new InputStreamReader(getInputStreamFromString(gui.getInput())));
                 PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
@@ -106,6 +102,8 @@ public class Client implements ActionListener {
             }
         }
         if (e.getSource()==gui.Conn){
+            port = Integer.parseInt(gui.getPort());
+            ip = gui.getIP();
             JOptionPane.showMessageDialog(null,"客户端已启动");
         }
     }
