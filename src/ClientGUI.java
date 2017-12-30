@@ -3,11 +3,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class ClientGUI{
 
-    JTextField Input;
-    JButton Send;
+    JTextField Input, Port, IP, Name;
+    JButton Send, Conn, Dcon;
     JTextArea ChartHistory;
 
     JLabel lblInput, lblPort, lblIP, lblName;
@@ -49,8 +50,23 @@ public class ClientGUI{
         ChartHistory = new JTextArea();
         Send = new JButton("发送");
 
-        lblPort = new JLabel("端口");
-        conInfo.add(lblPort);
+        lblPort = new JLabel("端口:");
+        Port = new JTextField(6);
+
+        lblIP = new JLabel("服务器IP：");
+        IP = new JTextField(6);
+
+        lblName = new JLabel("姓名：");
+        Name = new JTextField(6);
+
+        Conn = new JButton("连接");
+        Dcon = new JButton("断开");
+
+        conInfo.add(lblPort);conInfo.add(Port);
+        conInfo.add(lblIP);conInfo.add(IP);
+        conInfo.add(lblName);conInfo.add(Name);
+        conInfo.add(Conn);conInfo.add(Dcon);
+
 
         jp.add(conInfo);
         jp.add(onlineClients);
@@ -78,6 +94,8 @@ public class ClientGUI{
     public String getInput(){
         return Input.getText();
     }
+
+
 
 
 

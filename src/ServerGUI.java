@@ -35,7 +35,7 @@ public class ServerGUI implements ActionListener{
         JPanel jp = new JPanel(new FlowLayout());
         JPanel p1 = new JPanel(new GridLayout(2,1));
         p1.setBorder(BorderFactory.createTitledBorder("聊天内容"));
-        lblInput = new JLabel("姓名");
+        lblInput = new JLabel("写消息");
         Input = new JTextField(6);
 
         lblOnlineNum = new JLabel("当前在线人数："+0);
