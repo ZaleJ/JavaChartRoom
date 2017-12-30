@@ -1,14 +1,26 @@
+import javax.swing.*;
+import java.awt.*;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import java.util.List;
 
 public class Server{
 
 	int port;				//端口号
 	List<Socket> clients;	//客户端列表，包含所有连接到该客户端的信息
 	ServerSocket server;	//服务器
+    static ServerGUI gui = new ServerGUI();
 
 	public static void main(String[] args){
+        JFrame f = new JFrame("JAVA聊天室服务器");
+        Container contentPane = f.getContentPane();
+        JPanel pane = gui.init();
+        f.getContentPane().add(pane);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f.setSize(600,500);
+        f.setVisible(true);
+
 		new Server();
 	}	//main函数，创建服务器
 
@@ -24,6 +36,8 @@ public class Server{
 				Socket socket=server.accept();
 				//当检测到有客户端加入时候，将客户端信息加入列表，并创建一个新的关于刚进入的客户端的MyThread线程
 				clients.add(socket);
+				gui.OnlineNum++;
+				gui.lblOnlineNum.setText("当前在线人数："+gui.OnlineNum);
 				Mythread mythread=new Mythread(socket);
 				mythread.start();
 			}
@@ -49,7 +63,7 @@ public class Server{
 				while ((msg = br.readLine()) != null) {
 					msg = "【" + ssocket.getInetAddress() + "】说：" + msg; 
 					sendMsg(); 
-				} 
+				}
 			}
 			catch(Exception ex){
 			}    
@@ -66,6 +80,7 @@ public class Server{
 					pw=new PrintWriter(clients.get(i).getOutputStream(),true);
 					pw.println(msg);
 					pw.flush();
+
 				}
 			}
 			catch(Exception ex){}
