@@ -51,5 +51,9 @@ public class ClientGUI implements ActionListener{
         }
     }
 
+    public void addChartContent(String s){
+        ChartHistory.append(s);
+    }
+
 
 }
