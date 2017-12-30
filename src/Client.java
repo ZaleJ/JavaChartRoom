@@ -98,7 +98,7 @@ public class Client implements ActionListener {
                 if (new String(gui.Input.getText()).length()!=0){
                     LineContext=gui.Input.getText();
                     pw.println(LineContext);
-                    gui.addChartContent(LineContext);
+                    //gui.addChartContent(LineContext);
                 }
 
             }catch (Exception ex) {

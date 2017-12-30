@@ -1,4 +1,6 @@
 
+import javafx.scene.chart.Chart;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,14 +69,14 @@ public class ClientGUI{
         conInfo.add(lblName);conInfo.add(Name);
         conInfo.add(Conn);conInfo.add(Dcon);
 
-
+        showMessage.add(ChartHistory);
         jp.add(conInfo);
         jp.add(onlineClients);
         jp.add(showMessage);
 
         jp.add(lblInput);jp.add(Input);
         jp.add(Send);
-        jp.add(ChartHistory);
+        //jp.add(ChartHistory);
 
         return jp;
     }

@@ -66,7 +66,7 @@ public class Server{
 				}
 			}
 			catch(Exception ex){
-			}    
+			}
 		}
 
 		//对自己和所有客户端发送一条消息
