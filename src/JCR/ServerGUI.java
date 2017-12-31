@@ -1,3 +1,4 @@
+package JCR;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,18 +13,18 @@ public class ServerGUI implements ActionListener{
 
     JLabel lblInput, lblOnlineNum;
 
-    int OnlineNum=0;
+    static int OnlineNum=0;
 
 //    public static void main(String[] args){
 //        JFrame f = new JFrame("JAVA聊天室");
 //        Container contentPane = f.getContentPane();
-//        ClientGUI gui = new ClientGUI();
+//        JCR.ClientGUI gui = new JCR.ClientGUI();
 //        JPanel pane = gui.init();
 //        f.getContentPane().add(pane);
 //        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        f.setSize(600,500);
 //        f.setVisible(true);
-//        Client c = new Client();
+//        JCR.Client c = new JCR.Client();
 //    }
 
 
@@ -39,7 +40,6 @@ public class ServerGUI implements ActionListener{
         Input = new JTextField(6);
 
         lblOnlineNum = new JLabel("当前在线人数："+0);
-        ;
 
         ChartHistory = new JTextArea();
         Send = new JButton("发送");
@@ -70,6 +70,7 @@ public class ServerGUI implements ActionListener{
         Input.setText("");
     }
 
+    //获取输入框内容
     public String getInput(){
         return Input.getText();
     }

@@ -1,3 +1,4 @@
+package JCR;
 
 import javafx.scene.chart.Chart;
 
@@ -12,18 +13,19 @@ public class ClientGUI{
     JTextField Input, Port, IP, Name;
     JButton Send, Conn, Dcon;
     JTextArea ChartHistory = new JTextArea(480, 280);
+    JTextArea onlineMember = new JTextArea(40, 280);
 
     JLabel lblInput, lblPort, lblIP, lblName;
 //    public static void main(String[] args){
 //        JFrame f = new JFrame("JAVA聊天室");
 //        Container contentPane = f.getContentPane();
-//        ClientGUI gui = new ClientGUI();
+//        JCR.ClientGUI gui = new JCR.ClientGUI();
 //        JPanel pane = gui.init();
 //        f.getContentPane().add(pane);
 //        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        f.setSize(600,500);
 //        f.setVisible(true);
-//        Client c = new Client();
+//        JCR.Client c = new JCR.Client();
 //    }
 
 
@@ -50,6 +52,8 @@ public class ClientGUI{
         lblInput = new JLabel("写消息");
         Input = new JTextField(20);
         ChartHistory = new JTextArea();
+        onlineMember = new JTextArea();
+
         Send = new JButton("发送");
 
         lblPort = new JLabel("端口:");
@@ -70,6 +74,9 @@ public class ClientGUI{
         conInfo.add(Conn);conInfo.add(Dcon);
 
         showMessage.add(ChartHistory);
+
+        onlineClients.add(onlineMember);
+
         jp.add(conInfo);
         jp.add(onlineClients);
         jp.add(showMessage);
@@ -79,6 +86,8 @@ public class ClientGUI{
         //jp.add(ChartHistory);
         Port.setText("6666");
         IP.setText("127.0.0.1");
+        Name.setText(new CountClients().num+"");
+
         return jp;
     }
 
@@ -87,6 +96,10 @@ public class ClientGUI{
     //在textarea中增加文本
     public void addChartContent(String s){
         ChartHistory.append(s);
+    }
+
+    public void addOnLineMember(String s){
+        onlineMember.append(s);
     }
 
     //清空输入框的内容
@@ -105,6 +118,7 @@ public class ClientGUI{
     public String getIP(){
         return IP.getText();
     }
+
 
 
 

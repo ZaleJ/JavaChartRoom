@@ -1,3 +1,5 @@
+package JCR;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.*;
@@ -9,10 +11,17 @@ public class Server{
 
 	int port;				//端口号
 	List<Socket> clients;	//客户端列表，包含所有连接到该客户端的信息
+	List<String> names;
 	ServerSocket server;	//服务器
-    static ServerGUI gui = new ServerGUI();
+    ServerGUI gui = new ServerGUI();
+
 
 	public static void main(String[] args){
+		new Server();
+	}	//main函数，创建服务器
+
+    //服务器实现
+	public Server(){
         JFrame f = new JFrame("JAVA聊天室服务器");
         Container contentPane = f.getContentPane();
         JPanel pane = gui.init();
@@ -21,14 +30,10 @@ public class Server{
         f.setSize(600,500);
         f.setVisible(true);
 
-		new Server();
-	}	//main函数，创建服务器
-
-    //服务器实现
-	public Server(){
-		try{
+        try{
 			port=6666;      //定义具体端口号端口
 			clients = new ArrayList<Socket>();	//定义客户端列表，包含客户所有信息
+			names = new ArrayList<String>();
 			server = new ServerSocket(port);	//定义服务器对象
 
 			//死循环检测有无新客户端连接
@@ -37,6 +42,7 @@ public class Server{
 				//当检测到有客户端加入时候，将客户端信息加入列表，并创建一个新的关于刚进入的客户端的MyThread线程
 				clients.add(socket);
 				gui.OnlineNum++;
+				names.add("client"+gui.OnlineNum);
 				gui.lblOnlineNum.setText("当前在线人数："+gui.OnlineNum);
 				String clientName = "client"+gui.OnlineNum;
 				Mythread mythread=new Mythread(socket, clientName);
@@ -63,9 +69,10 @@ public class Server{
 
 
                 msg = "欢迎【" + Name + "】进入聊天室！当前聊天室有【" + clients.size() + "】人";
+
 				sendMsg();
 				while ((msg = br.readLine()) != null) {
-					msg = "【" + Name + "】说sasasa：" + msg;
+					msg = "【" + Name + "】说：" + msg;
 					sendMsg(); 
 				}
 			}
@@ -78,13 +85,11 @@ public class Server{
 			try{
                 //对自己发送一条消息
 				System.out.println(msg);
-
                 //对所有客户端发送一条消息
 				for(int i = clients.size() - 1; i >= 0; i--){
 					pw=new PrintWriter(clients.get(i).getOutputStream(),true);
 					pw.println(msg);
 					pw.flush();
-
 				}
 			}
 			catch(Exception ex){}
