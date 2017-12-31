@@ -15,7 +15,6 @@ public class Client implements ActionListener {
     String LineContext;
     ArrayList<String> clients = new ArrayList<String> ();
 
-    //public String name = "client";
     ClientGUI gui = new ClientGUI();
 
     public static void main(String[] args){
