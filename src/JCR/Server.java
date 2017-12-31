@@ -27,7 +27,7 @@ public class Server{
         JPanel pane = gui.init();
         f.getContentPane().add(pane);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setSize(600,500);
+        f.setSize(650,650);
         f.setVisible(true);
 
         try{
@@ -69,11 +69,11 @@ public class Server{
 				//msg = "欢迎【" + ssocket.getInetAddress() + "】进入聊天室！当前聊天室有【" + clients.size() + "】人";
 
 
-                msg = "欢迎【" + Name + "】进入聊天室！当前聊天室有【" + clients.size() + "】人";
+                msg = "欢迎【" + Name + "】进入聊天室！当前聊天室有【" + clients.size() + "】人\n";
 
 				sendMsg();
 				while ((msg = br.readLine()) != null) {
-					msg = "【" + Name + "】说：" + msg;
+					msg = "【" + Name + "】说：" + msg+"\n";
 					sendMsg(); 
 				}
 			}

@@ -35,8 +35,20 @@ public class ServerGUI implements ActionListener{
 
     public JPanel init(){
         JPanel jp = new JPanel(new FlowLayout());
-        JPanel p1 = new JPanel(new GridLayout(2,1));
-        p1.setBorder(BorderFactory.createTitledBorder("聊天内容"));
+        JPanel setInfo = new JPanel();
+        JPanel onlineClients = new JPanel();
+        JPanel showMessage = new JPanel(new GridLayout(2,1));
+
+        setInfo.setBorder(BorderFactory.createTitledBorder("配置信息"));
+        setInfo.setPreferredSize(new Dimension(580, 60));
+
+        onlineClients.setBorder(BorderFactory.createTitledBorder("在线用户"));
+        onlineClients.setPreferredSize(new Dimension(80, 300));
+
+        showMessage.setBorder(BorderFactory.createTitledBorder("消息显示区"));
+        showMessage.setPreferredSize(new Dimension(500, 300));
+
+
         lblInput = new JLabel("写消息");
         Input = new JTextField(6);
 
@@ -45,11 +57,14 @@ public class ServerGUI implements ActionListener{
         ChartHistory = new JTextArea();
         OnlineClients = new JTextArea();
         Send = new JButton("发送");
-        jp.add(lblOnlineNum);
+        setInfo.add(lblOnlineNum);
+        onlineClients.add(OnlineClients);
+        showMessage.add(ChartHistory);
+        jp.add(setInfo);
+        jp.add(onlineClients);
+        jp.add(showMessage);
         jp.add(lblInput);jp.add(Input);
         jp.add(Send);
-        jp.add(ChartHistory);
-        jp.add(OnlineClients);
         Send.addActionListener(this);
         return jp;
     }
