@@ -66,8 +66,9 @@ public class Client implements ActionListener {
 //                gui.addChartContent(new takeString().takeNumber(msg1));
                 if (checkArrayList(clients, new takeString().takeName(msg1))){
                     clients.add(new takeString().takeName(msg1));
-                    gui.addOnLineMember(new takeString().takeName(msg1));
+                    gui.addOnLineMember(new takeString().takeName(msg1)+"\n");
                 }
+                gui.Name.setText(clients.get(0));
 //                printAllClients(clients);
 
 
