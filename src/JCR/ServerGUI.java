@@ -10,6 +10,7 @@ public class ServerGUI implements ActionListener{
     JTextField Input;
     JButton Send;
     JTextArea ChartHistory;
+    JTextArea OnlineClients;
 
     JLabel lblInput, lblOnlineNum;
 
@@ -42,11 +43,13 @@ public class ServerGUI implements ActionListener{
         lblOnlineNum = new JLabel("当前在线人数："+0);
 
         ChartHistory = new JTextArea();
+        OnlineClients = new JTextArea();
         Send = new JButton("发送");
         jp.add(lblOnlineNum);
         jp.add(lblInput);jp.add(Input);
         jp.add(Send);
         jp.add(ChartHistory);
+        jp.add(OnlineClients);
         Send.addActionListener(this);
         return jp;
     }
@@ -63,6 +66,10 @@ public class ServerGUI implements ActionListener{
     //在textarea中增加文本
     public void addChartContent(String s){
         ChartHistory.append(s);
+    }
+
+    public void addOnlineClient(String s){
+        OnlineClients.append(s+"\n");
     }
 
     //清空输入框的内容

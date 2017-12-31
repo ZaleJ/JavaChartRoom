@@ -43,6 +43,7 @@ public class Server{
 				clients.add(socket);
 				gui.OnlineNum++;
 				names.add("client"+gui.OnlineNum);
+				gui.addOnlineClient("client"+gui.OnlineNum);
 				gui.lblOnlineNum.setText("当前在线人数："+gui.OnlineNum);
 				String clientName = "client"+gui.OnlineNum;
 				Mythread mythread=new Mythread(socket, clientName);
@@ -84,7 +85,8 @@ public class Server{
 		public void sendMsg(){
 			try{
                 //对自己发送一条消息
-				System.out.println(msg);
+				//System.out.println(msg);
+                gui.addChartContent(msg);
                 //对所有客户端发送一条消息
 				for(int i = clients.size() - 1; i >= 0; i--){
 					pw=new PrintWriter(clients.get(i).getOutputStream(),true);
